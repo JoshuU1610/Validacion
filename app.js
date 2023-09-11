@@ -106,6 +106,7 @@ form.addEventListener('submit', e => {
         spanCode.innerHTML = `+${optionToSelect.value}`;
         spanCode.classList.add('correct');
         inputCountries.classList.add('correct');
+        countryValidation = true;
         
     } catch (error) {
         console.log(error);
