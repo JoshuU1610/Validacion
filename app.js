@@ -87,3 +87,30 @@ form.addEventListener('submit', e => {
     }
     console.log(user);
 });
+
+// Funcion que se llama a si misma
+
+(async () => {
+    try {
+
+        const response = await fetch('https://api.geoapify.com/v1/ipinfo?apiKey=5488dc653a5b4576804892ab1b50c66f');
+        if (response.status >= 400) {
+            throw new Error('Noooooooooooooo');
+        }
+        const data = await response.json();
+        const isoCode = data.country.iso_code;
+        const optionToSelect = [...inputCountries.children].find(option => {
+            return option.getAttribute('data-countryCode') === isoCode;
+        })
+        optionToSelect.selected = true;
+        spanCode.innerHTML = `+${optionToSelect.value}`;
+        spanCode.classList.add('correct');
+        inputCountries.classList.add('correct');
+        
+    } catch (error) {
+        console.log(error);
+        alert('aaaaa');
+    }
+})()
+
+// 5488dc653a5b4576804892ab1b50c66f API KEY
